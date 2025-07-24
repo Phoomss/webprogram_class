@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truth Table Viewer</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        padding: 2rem;
+      }
+
+      h2 {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        color: #005577;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5rem 0.75rem;
+        text-align: center;
+      }
+
+      th {
+        background-color: #005577;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f1f1f1;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+      .source {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.95em;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Propositional Logic Truth Tables</h1>
+    <div id="tables"></div>
+
+    <div class="source">
+      ที่มา: Logic Problems, Theorendatutor<br />
+      <a
+        href="https://theorendatutor.com/wp-content/uploads/2016/02/Logic_Problem.pdf"
+        target="_blank"
+      >
+        https://theorendatutor.com/wp-content/uploads/2016/02/Logic_Problem.pdf
+      </a>
+    </div>
+    <script>
+      const p = [true, true, false, false];
+      const q = [true, false, true, false];
+
+      function boolToT(b) {
+        return b ? "T" : "F";
+      }
+
+      function generateTable(headers, rows, title) {
+        let html = `<h2>${title}</h2><div class="table-container"><table><tr>`;
+        headers.forEach((h) => (html += `<th>${h}</th>`));
+        html += "</tr>";
+
+        for (let i = 0; i < rows[0].length; i++) {
+          html += "<tr>";
+          for (let j = 0; j < headers.length; j++) {
+            html += `<td>${rows[j][i]}</td>`;
+          }
+          html += "</tr>";
+        }
+
+        html += "</table></div>";
+        return html;
+      }
+
+      const tables = [];
+
+      function question1() {
+        let not_p = [],
+          not_q = [],
+          qAnd_not_q = [],
+          not_p_and_qAnd_not_q = [],
+          implication = [];
+
+        for (let i = 0; i < p.length; i++) {
+          not_p.push(boolToT(!p[i]));
+          not_q.push(boolToT(!q[i]));
+          qAnd_not_q.push(boolToT(q[i] && !q[i]));
+          not_p_and_qAnd_not_q.push(boolToT(!p[i] && q[i] && !q[i]));
+          implication.push(boolToT(!p[i] && q[i] && !q[i] ? p[i] : true));
+        }
+
+        tables.push(
+          generateTable(
+            [
+              "p",
+              "q",
+              "~p",
+              "~q",
+              "q ∧ ~q",
+              "~p ∧ (q ∧ ~q)",
+              "(~p ∧ (q ∧ ~q)) → p",
+            ],
+            [
+              p.map(boolToT),
+              q.map(boolToT),
+              not_p,
+              not_q,
+              qAnd_not_q,
+              not_p_and_qAnd_not_q,
+              implication,
+            ],
+            "1. (~p ∧ (q ∧ ~q)) → p"
+          )
+        );
+      }
+
+      function question2() {
+        let pImpR = [],
+          not_q = [],
+          not_q_and_p = [],
+          disjunction = [];
+
+        for (let i = 0; i < p.length; i++) {
+          pImpR.push(boolToT(!p[i] || true)); // r assumed true
+          not_q.push(boolToT(!q[i]));
+          not_q_and_p.push(boolToT(!q[i] && p[i]));
+          disjunction.push(boolToT(!p[i] || true || (!q[i] && p[i])));
+        }
+
+        tables.push(
+          generateTable(
+            ["p", "q", "p → r", "~q", "~q ∧ p", "(p → r) ∨ (~q ∧ p)"],
+            [
+              p.map(boolToT),
+              q.map(boolToT),
+              pImpR,
+              not_q,
+              not_q_and_p,
+              disjunction,
+            ],
+            "2. (p → r) ∨ (~q ∧ p)"
+          )
+        );
+      }
+
+      function question3() {
+        let pImpQ = [],
+          not_q = [],
+          not_p = [],
+          not_qImpNot_p = [],
+          biconditional = [];
+
+        for (let i = 0; i < p.length; i++) {
+          pImpQ.push(boolToT(!p[i] || q[i]));
+          not_q.push(boolToT(!q[i]));
+          not_p.push(boolToT(!p[i]));
+          not_qImpNot_p.push(boolToT(!!q[i] || !p[i]));
+          biconditional.push(boolToT((!p[i] || q[i]) === (!!q[i] || !p[i])));
+        }
+
+        tables.push(
+          generateTable(
+            ["p", "q", "p → q", "~q", "~p", "~q → ~p", "(p → q) ↔ (~q → ~p)"],
+            [
+              p.map(boolToT),
+              q.map(boolToT),
+              pImpQ,
+              not_q,
+              not_p,
+              not_qImpNot_p,
+              biconditional,
+            ],
+            "3. (p → q) ↔ (~q → ~p)"
+          )
+        );
+      }
+
+      function question4() {
+        let pImpQ = [],
+          not_p = [],
+          not_q = [],
+          andPart = [],
+          implication = [];
+
+        for (let i = 0; i < p.length; i++) {
+          pImpQ.push(boolToT(!p[i] || q[i]));
+          not_p.push(boolToT(!p[i]));
+          not_q.push(boolToT(!q[i]));
+          andPart.push(boolToT(!p[i] && !q[i]));
+          implication.push(boolToT(!p[i] || q[i] ? true : !p[i] && !q[i]));
+        }
+
+        tables.push(
+          generateTable(
+            ["p", "q", "p → q", "~p", "~q", "~p ∧ ~q", "(p → q) → (~p ∧ ~q)"],
+            [
+              p.map(boolToT),
+              q.map(boolToT),
+              pImpQ,
+              not_p,
+              not_q,
+              andPart,
+              implication,
+            ],
+            "4. (p → q) → (~p ∧ ~q)"
+          )
+        );
+      }
+
+      function question5() {
+        let not_not_p = [],
+          biconditional = [];
+
+        for (let i = 0; i < p.length; i++) {
+          not_not_p.push(boolToT(!!p[i]));
+          biconditional.push(boolToT(p[i] === !!p[i]));
+        }
+
+        tables.push(
+          generateTable(
+            ["p", "~~p", "p ↔ ~(~p)"],
+            [p.map(boolToT), not_not_p, biconditional],
+            "5. p ↔ ~(~p)"
+          )
+        );
+      }
+
+      // Call all questions
+      question1();
+      question2();
+      question3();
+      question4();
+      question5();
+
+      document.getElementById("tables").innerHTML = tables.join("");
+    </script>
+  </body>
+</html>
