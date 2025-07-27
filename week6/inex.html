@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truth Table UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .true {
+      background-color: #d4edda;
+    }
+    .false {
+      background-color: #f8d7da;
+    }
+  </style>
+</head>
+<body>
+  <h1>Truth Table Evaluator</h1>
+  <table id="truthTable">
+    <thead>
+      <tr>
+        <th>p</th>
+        <th>q</th>
+        <th>r</th>
+        <th>p → q</th>
+        <th>q → r</th>
+        <th>p → r</th>
+        <th>(p→q)∧(q→r)</th>
+        <th>[(p→q)∧(q→r)] → (p→r)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will be injected here -->
+    </tbody>
+  </table>
+
+  <script>
+    const p = [true, true, true, true, false, false, false, false];
+    const q = [true, true, false, false, true, true, false, false];
+    const r = [true, false, true, false, true, false, true, false];
+
+    const tbody = document.querySelector("#truthTable tbody");
+
+    for (let i = 0; i < p.length; i++) {
+      const row = document.createElement("tr");
+
+      const pTq = !(p[i] && !q[i]);  // p → q
+      const qTr = !(q[i] && !r[i]);  // q → r
+      const pTr = !(p[i] && !r[i]);  // p → r
+      const conj = pTq && qTr;       // (p → q) ∧ (q → r)
+      const finalResult = !conj || pTr; // [(p→q)∧(q→r)] → (p→r)
+
+      const cells = [
+        p[i],
+        q[i],
+        r[i],
+        pTq,
+        qTr,
+        pTr,
+        conj,
+        finalResult,
+      ];
+
+      cells.forEach(val => {
+        const cell = document.createElement("td");
+        cell.textContent = val ? "T" : "F";
+        cell.className = val ? "true" : "false";
+        row.appendChild(cell);
+      });
+
+      tbody.appendChild(row);
+    }
+  </script>
+</body>
+</html>
