@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relations & Functions Modern UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0f172a;
+        color: #e5e7eb;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #60a5fa;
+        margin-bottom: 40px;
+      }
+      .card {
+        background: #1e293b;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+      }
+      h2 {
+        color: #7dd3fc;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 16px;
+        margin: 5px 0;
+      }
+      .container {
+        display: flex;
+        gap: 60px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .set {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        background: #334155;
+        padding: 20px;
+        border-radius: 12px;
+      }
+      .element {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #475569;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 18px;
+        position: relative;
+        transition: background 0.2s;
+      }
+      .element:hover {
+        background: #60a5fa;
+        color: #0f172a;
+      }
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      line {
+        stroke: #60a5fa;
+        stroke-width: 3;
+        marker-end: url(#arrowhead);
+      }
+      #outputFunction,
+      #outputRelation,
+      #outputClasses p {
+        background: #0f172a;
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Relations & Functions Modern UI</h1>
+
+    <!-- Example 1: Relation A×B -->
+    <div class="card">
+      <h2>Example 1: Relation R ⊆ A×B</h2>
+      <div class="container" id="container1">
+        <div class="set" id="setA1">
+          <div class="element" id="a1">1</div>
+          <div class="element" id="a2">2</div>
+          <div class="element" id="a3">3</div>
+        </div>
+        <svg id="svg1"></svg>
+        <div class="set" id="setB1">
+          <div class="element" id="b2">2</div>
+          <div class="element" id="b4">4</div>
+          <div class="element" id="b6">6</div>
+          <div class="element" id="b8">8</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 2: Relation R = {(1,4),(2,3),(3,2),(4,1)} -->
+    <div class="card">
+      <h2>Example 2: Relation R = {(1,4),(2,3),(3,2),(4,1)}</h2>
+      <div class="container" id="container2" style="width: 600px; margin: auto">
+        <svg id="lines2"></svg>
+        <div class="set" id="setA2">
+          <div class="element" data-value="1">1</div>
+          <div class="element" data-value="2">2</div>
+          <div class="element" data-value="3">3</div>
+          <div class="element" data-value="4">4</div>
+        </div>
+        <div class="set" id="setB2">
+          <div class="element" data-value="1">1</div>
+          <div class="element" data-value="2">2</div>
+          <div class="element" data-value="3">3</div>
+          <div class="element" data-value="4">4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 3: Function P(n) -->
+    <div class="card">
+      <h2>Example 3: Function P(n) = 50n + 100</h2>
+      <div id="outputFunction"></div>
+    </div>
+
+    <!-- Example 4: Check Equivalence Relation -->
+    <div class="card">
+      <h2>Example 4: Check Reflexive, Symmetric, Transitive</h2>
+      <div id="outputRelation"></div>
+    </div>
+
+    <!-- Example 5: Equivalence Classes mod 2 -->
+    <div class="card">
+      <h2>Example 5: Equivalence Classes mod 2</h2>
+      <div id="outputClasses"></div>
+    </div>
+
+    <script>
+      /******** Example 1 ********/
+      const relations1 = [
+        { from: "a1", to: "b2" },
+        { from: "a2", to: "b4" },
+        { from: "a3", to: "b6" },
+      ];
+      const svg1 = document.getElementById("svg1");
+      const container1 = document.getElementById("container1");
+      const rect1 = container1.getBoundingClientRect();
+      svg1.setAttribute("width", rect1.width);
+      svg1.setAttribute("height", rect1.height);
+      svg1.innerHTML = `<defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/></marker></defs>`;
+      function getCenter1(el, parent) {
+        const r = el.getBoundingClientRect();
+        const c = parent.getBoundingClientRect();
+        return {
+          x: r.left - c.left + r.width / 2,
+          y: r.top - c.top + r.height / 2,
+        };
+      }
+      relations1.forEach((rel) => {
+        const from = document.getElementById(rel.from);
+        const to = document.getElementById(rel.to);
+        const p1 = getCenter1(from, container1);
+        const p2 = getCenter1(to, container1);
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", p1.x);
+        line.setAttribute("y1", p1.y);
+        line.setAttribute("x2", p2.x);
+        line.setAttribute("y2", p2.y);
+        svg1.appendChild(line);
+      });
+
+      /******** Example 2 ********/
+      const R2 = [
+        [1, 4],
+        [2, 3],
+        [3, 2],
+        [4, 1],
+      ];
+      const svg2 = document.getElementById("lines2");
+      const setA2 = document.querySelectorAll("#setA2 .element");
+      const setB2 = document.querySelectorAll("#setB2 .element");
+      const defs2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "defs"
+      );
+      const marker2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "marker"
+      );
+      marker2.setAttribute("id", "arrowhead");
+      marker2.setAttribute("markerWidth", "10");
+      marker2.setAttribute("markerHeight", "7");
+      marker2.setAttribute("refX", "10");
+      marker2.setAttribute("refY", "3.5");
+      marker2.setAttribute("orient", "auto");
+      const polygon2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "polygon"
+      );
+      polygon2.setAttribute("points", "0 0, 10 3.5, 0 7");
+      polygon2.setAttribute("fill", "#60a5fa");
+      marker2.appendChild(polygon2);
+      defs2.appendChild(marker2);
+      svg2.appendChild(defs2);
+      function getCenter2(el, parent) {
+        const r = el.getBoundingClientRect();
+        const c = parent.getBoundingClientRect();
+        return {
+          x: r.left - c.left + r.width / 2,
+          y: r.top - c.top + r.height / 2,
+        };
+      }
+      R2.forEach(([a, b]) => {
+        const elA = [...setA2].find((e) => e.dataset.value == a);
+        const elB = [...setB2].find((e) => e.dataset.value == b);
+        const p1 = getCenter2(elA, document.getElementById("container2"));
+        const p2 = getCenter2(elB, document.getElementById("container2"));
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", p1.x);
+        line.setAttribute("y1", p1.y);
+        line.setAttribute("x2", p2.x);
+        line.setAttribute("y2", p2.y);
+        svg2.appendChild(line);
+      });
+
+      /******** Example 3 ********/
+      function P(n) {
+        return 50 * n + 100;
+      }
+      const valueAt10 = P(10);
+      const targetPrice = 600;
+      const n = (targetPrice - 100) / 50;
+      document.getElementById(
+        "outputFunction"
+      ).innerHTML = `<p>P(10) = ${valueAt10}</p><p>ราคา ${targetPrice} บาท ⇒ ต้องซื้อ ${n} ชิ้น</p>`;
+
+      /******** Example 4 ********/
+      const A4 = [1, 2, 3];
+      const R4 = [
+        [1, 1],
+        [2, 2],
+        [3, 3],
+        [1, 2],
+        [2, 1],
+      ];
+      function isReflexive(A, R) {
+        return A.every((a) => R.some(([x, y]) => x === a && y === a));
+      }
+      function isSymmetric(R) {
+        return R.every(([x, y]) => R.some(([u, v]) => u === y && v === x));
+      }
+      function isTransitive(R) {
+        return R.every(([x, y]) =>
+          R.every(([u, v]) =>
+            y === u ? R.some(([p, q]) => p === x && q === v) : true
+          )
+        );
+      }
+      document.getElementById(
+        "outputRelation"
+      ).innerHTML = `<p>Reflexive: ${isReflexive(
+        A4,
+        R4
+      )}</p><p>Symmetric: ${isSymmetric(R4)}</p><p>Transitive: ${isTransitive(
+        R4,
+        R4
+      )}</p>`;
+
+      /******** Example 5 ********/
+      const A5 = [0, 1, 2, 3];
+      const classes = {};
+      A5.forEach((x) => {
+        const key = x % 2;
+        if (!classes[key]) classes[key] = [];
+        classes[key].push(x);
+      });
+      const outputClasses = document.getElementById("outputClasses");
+      for (const key in classes) {
+        outputClasses.innerHTML += `<p>[${key}] = { ${classes[key].join(
+          ", "
+        )} }</p>`;
+      }
+    </script>
+  </body>
+</html>
