@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ร้านข้าวกล่องนานาชาติ</title>
+    <style>
+      body {
+        font-family: "Prompt", Arial, sans-serif;
+        background-color: #fafafa;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      header {
+        background-color: #ff7043;
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      #app {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 10px;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .price {
+        font-size: 16px;
+        color: #ff7043;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: #ff7043;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #e64a19;
+      }
+    </style>
+  </head>
+  <body>
+    <header>🍱 ร้านข้าวกล่องนานาชาติ 🍱</header>
+
+    <div id="app">
+      <div class="menu-grid">
+        <div class="card" v-for="food in manyFoods" :key="food.name">
+          <img :src="food.url" :alt="food.name" />
+          <div class="card-content">
+            <h3>{{ food.name }}</h3>
+            <p class="price">{{ food.price }} บาท</p>
+            <button @click="order(food)">สั่งซื้อ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            manyFoods: [
+              { name: "🌯 ข้าวปลาทอดซอสมะขาม", url: "1.jpg", price: 35 },
+              { name: "🥗 รามยอนบะหมี่ไก่เผ็ด", url: "2.jpg", price: 35 },
+              { name: "🍰 ข้าวไก่ย่างซอสเทริยากิ", url: "3.jpg", price: 35 },
+              { name: "🍲 ข้าวไก่ทอดแกงกะหรี่", url: "4.jpg", price: 35 },
+              { name: "🐟 ข้าวไข่ข้นเบคอนแฮม", url: "5.jpg", price: 35 },
+              { name: "🍕 จาจังมยอนบะหมี่ดำเกาหลี", url: "6.jpg", price: 35 },
+              { name: "🍚 ไก่ย่าง SPICY", url: "7.jpg", price: 35 },
+            ],
+          };
+        },
+        methods: {
+          order(food) {
+            alert(`คุณสั่งซื้อ: ${food.name} ราคา ${food.price} บาท`);
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
