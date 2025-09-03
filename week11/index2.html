@@ -301,14 +301,7 @@
         <div class="menu-grid">
             <div class="food-card" v-for="food in filteredFoods" :key="food.id">
                 <div class="card-image">
-                    <img 
-                        :src="food.image" 
-                        :alt="food.name"
-                        @error="$event.target.style.display='none'; $event.target.nextElementSibling.style.display='block'"
-                    >
-                    <div class="fallback-emoji" style="display: none;">
-                        {{ food.emoji }}
-                    </div>
+                    <span>{{ food.emoji }}</span>
                 </div>
                 <div class="card-content">
                     <h3 class="food-name">{{ food.name }}</h3>
