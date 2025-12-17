@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tutorial</title>
+    <style>
+        footer {
+            background: #000;
+            color: aliceblue;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1,
+        h2 {
+            color: rgb(187, 7, 7);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        pre{
+            background-color: rgb(193, 193, 193);
+            border-left: 5px solid red;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>HTML Tutorial</h1>
+
+    <p>
+        Welcome to the HTML tutorial. Click on the topics below to start learning:
+    </p>
+
+    <ul>
+        <li><a href="#intro">Introduction to HTML</a></li>
+        <li><a href="#structure">HTML Document Structure</a></li>
+        <li><a href="#headings">Headings</a></li>
+        <li><a href="#text-format">Text Formatting</a></li>
+        <li><a href="#links">Creating Links</a></li>
+        <li><a href="#lists">Lists (Ordered and Unordered)</a></li>
+        <li><a href="#images">Adding Images</a></li>
+        <li><a href="#tables">Creating Tables</a></li>
+        <li><a href="#forms">HTML Forms</a></li>
+        <li><a href="#semantic">Semantic HTML</a></li>
+    </ul>
+
+    <h2 id="intro">Introduction to HTML</h2>
+
+    <ul>
+        <li>HTML stands for Hyper Text Markup Language.</li>
+        <li>HTML is the standard markup language for creating web pages.</li>
+        <li>HTML describes the structure of a web page.</li>
+        <li>HTML consists of a series of elements.</li>
+        <li>HTML elements tell the browser how to display the content.</li>
+        <li>HTML elements are represented by tags.</li>
+        <li>Browsers do not display HTML tags, but use them to render content.</li>
+        <li>HTML can embed programs such as JavaScript.</li>
+        <li>HTML is not a programming language; it is a markup language.</li>
+    </ul>
+
+    <h2 id="structure">HTML Document Structure</h2>
+
+    <p>An HTML document has the following basic structure:</p>
+
+  <pre>
+    คำอธิบาย:
+        &lt;!DOCTYPE html&gt;: ระบุว่าเป็นเอกสาร HTML5
+        &lt;html&gt;: เป็นรากของเอกสาร HTML ทั้งหมด
+        &lt;head&gt;: ส่วนที่ใช้เก็บข้อมูลเมตา เช่น &lt;title&gt; ชื่อหน้าเว็บ
+        &lt;body&gt;: ส่วนที่จะแสดงผลบนหน้าเว็บ
+        องค์ประกอบส าคัญของ HTML
+        แท็ก (Tags):
+        - แท็กเริ่มต้น (Opening Tag): เช่น &lt;h1&gt;
+        - แท็กปิด (Closing Tag): เช่น &lt;/h1&gt;
+        แอตทริบิวต์ (Attributes): คุณสมบัติของแท็ก
+        - ใช้เพื่อก าหนดคุณสมบัติเพิ่มเติม เช่น href, src, width, height
+        ตัวอย่าง: &lt;h1&gt;Hello, World!&lt;/h1&gt;
+        &lt;img src="image.jpg" alt="A description of the image"&gt
+  </pre>
+
+    <h2>HTML Elements</h2>
+
+    <p><strong>Tags:</strong></p>
+    <ul>
+        <li>Opening tag: <code>&lt;h1&gt;</code></li>
+        <li>Closing tag: <code>&lt;/h1&gt;</code></li>
+    </ul>
+
+    <p><strong>Attributes:</strong> Provide additional information about elements.</p>
+    <p>Examples: <code>href</code>, <code>src</code>, <code>width</code>, <code>height</code></p>
+
+    <p>Example:</p>
+    <pre>
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;img src="image.jpg" alt="Image description"&gt;
+    </pre>
+
+    <h2 id="headings">Headings</h2>
+
+    <p>HTML headings are defined using <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags:</p>
+
+    <ul>
+        <li>&lt;h1&gt; – Heading 1</li>
+        <li>&lt;h2&gt; – Heading 2</li>
+        <li>&lt;h3&gt; – Heading 3</li>
+        <li>&lt;h4&gt; – Heading 4</li>
+        <li>&lt;h5&gt; – Heading 5</li>
+        <li>&lt;h6&gt; – Heading 6</li>
+    </ul>
+
+    <h2>Paragraph</h2>
+    <p>workshop</p>
+    <p>HTML paragraphs are defined with the &lt;p&gt; tag...</p>
+
+    <h2 id="text-format">Text Formatting</h2>
+    <p>workshop</p>
+    <p>HTML provides various elements to format text...</p>
+
+    <ul>
+        <li>&lt;h1&gt; to &lt;h6&gt;: Headings</li>
+        <li>&lt;p&gt;: Paragraph</li>
+        <li>&lt;pre&gt;: Preformatted text</li>
+        <li>&lt;b&gt;: Bold text</li>
+        <li>&lt;strong&gt;: Important text</li>
+        <li>&lt;i&gt;: Italic text</li>
+        <li>&lt;em&gt;: Emphasized text</li>
+        <li>&lt;u&gt;: Underline text</li>
+        <li>&lt;ins&gt;: Inserted text</li>
+        <li>&lt;del&gt;: Deleted text</li>
+        <li>&lt;s&gt;: Strikethrough text</li>
+        <li>&lt;strike&gt;: Strikethrough text</li>
+        <li>&lt;small&gt;: Smaller text</li>
+        <li>&lt;big&gt;: Big text</li>
+        <li>&lt;mark&gt;: Marked/highlighted text</li>
+        <li>&lt;sub&gt;: Subscript text</li>
+        <li>&lt;sup&gt;: Superscript text</li>
+        <li>&lt;blockquote&gt;: Block quotation</li>
+        <li>&lt;q&gt;: Inline quotation</li>
+        <li>&lt;code&gt;: Code snippet</li>
+    </ul>
+
+    <h2 id="links">Creating Links</h2>
+    <p>workshop</p>
+
+    <ul>
+        <li>&lt;a href="url" target=""&gt;Link text&lt;/a&gt;</li>
+        <li>The href attribute specifies the URL of the page the link goes to</li>
+        <li>The target attribute specifies where to open the linked document</li>
+        <li>_self: Open the linked document in the same window/tab</li>
+        <li>_blank: Open the linked document in a new window/tab</li>
+        <li>_parent: Open the linked document in the parent frame</li>
+        <li>_top: Open the linked document in the full body of the window</li>
+        <li>Anchor links</li>
+        <li>Email links</li>
+        <li>Download links</li>
+    </ul>
+
+    <h2 id="lists">Lists (Ordered and Unordered)</h2>
+    <p>workshop</p>
+
+    <h2 id="images">Adding Images</h2>
+    <p>workshop</p>
+
+    <h2 id="tables">Creating Tables</h2>
+    <p>Workshop 1</p>
+    <p>Workshop 2</p>
+
+    <h2 id="forms">HTML Forms</h2>
+
+    <p>HTML forms are defined with the &lt;form&gt; tag...</p>
+
+    <p>หัวข ้อเกี่ยวกับฟอร์ม</p>
+
+    <ol>
+        <li>
+            โครงสร้างพื้นฐานของฟอร์ม
+            <ul>
+                <li>&lt;form&gt;: ใชเ้ป็นตวัครอบขอ้มูลในฟอรม์</li>
+                <li>action และ method (GET/POST): การก าหนดปลายทางและวธิสี ง่ ขอ้มลู</li>
+            </ul>
+        </li>
+
+        <li>
+            ชนิดของอินพุต (Input Types)
+            <ul>
+                <li>&lt;input&gt;: ชนดิ ตา่ ง ๆ เชน่ text, password, email, number,
+                    radio, checkbox, date, file
+                </li>
+                <li>&lt;textarea&gt;: ชอ่ งขอ้ความขนาดใหญ่</li>
+                <li>&lt;select&gt; และ &lt;option&gt;: เมนูแบบเลื่อนลง</li>
+                <li>&lt;datalist&gt;: รายการตัวเลือกที่ก าหนดไว ้ล่วงหน้า</li>
+                <li>&lt;optgroup&gt;: กลุ่มตัวเลือก</li>
+                <li>&lt;fieldset&gt; และ &lt;legend&gt;: กลุ่มข ้อมูลที่เกี่ยวข ้อง</li>
+            </ul>
+        </li>
+
+        <li>
+            ปุ่ มในฟอร์ม
+            <ul>
+                <li>&lt;button&gt;: ปุ่ มทั่วไป</li>
+                <li>&lt;input type="submit"&gt; และ &lt;input type="reset"&gt;: ป่มุ สง่ และลา้งขอ้ มลู</li>
+                <li>&lt;input type="button"&gt;: ปุ่ มทั่วไป</li>
+                <li>&lt;input type="image"&gt;: ปุ่ มรูปภาพ</li>
+                <li>&lt;input type="file"&gt;: ปุ่ มอัพโหลดไฟล์</li>
+            </ul>
+        </li>
+
+        <li>
+            การจัดการป้ายก ากับ (Labels)
+            <ul>
+                <li>&lt;label&gt;: เพอื่ เชอื่ มกับ &lt;input&gt; (ชว่ ยเพมิ่ การเขา้ถงึ)</li>
+                <li>for: ระบุ id ของอินพุตที่เกี่ยวข ้อง</li>
+            </ul>
+        </li>
+
+        <li>
+            การตรวจสอบข ้อมูล (Validation)
+            <ul>
+                <li>คณุ สมบัติเชน่ required, min, max, pattern</li>
+                <li>การใช ้JavaScript เพื่อท าการตรวจสอบ</li>
+            </ul>
+        </li>
+
+        <li>
+            ฟอร์มแบบสมัยใหม่ (HTML5)
+            <ul>
+                <li>placeholder: ตัวอย่างขอ้ความในชอ่ งอนิ พุต</li>
+                <li>autofocus: ให ้ฟอร์มเริ่มต ้นโฟกัส</li>
+            </ul>
+        </li>
+
+        <li>
+            การสง่ ฟอรม์ (Form Submission)
+            <ul>
+                <li>การสง่ ขอ้มลู ไปยังเซริฟ์ เวอร์</li>
+                <li>การใช ้JavaScript (เชน่ onsubmit)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2 id="semantic">Semantic HTML</h2>
+
+    <p>Semantic HTML elements clearly define the content of a web page...</p>
+
+    <pre>
+        - &lt;header&gt;: Defines a header for a document or section
+        - &lt;nav&gt;: Defines navigation links
+        - &lt;section&gt;: Defines a section in a document
+        - &lt;article&gt;: Defines an article
+        - &lt;aside&gt;: Defines content aside from the page content
+        - &lt;footer&gt;: Defines a footer for a document or section
+    </pre>
+ <a href="#top">top</a>
+    <hr>
+    <h2>My Workshop</h2>
+    <ul>
+        <li>workshop 01 : rabbit</li>
+        <li>workshop 02 : Login</li>
+    </ul>
+    <a href="#top">top</a>
+    <hr>
+
+    <footer>
+        &copy;2024 HTMLTutorials by NarongsakP.
+    </footer>
+
+</body>
+
+</html>
